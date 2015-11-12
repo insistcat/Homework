@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片切换</title>
+	<style>
+	body,p,form{
+		margin: 0;padding: 0;
+	}
+	img{
+		border: none;
+	}
+	#Box{
+		margin: 20px;
+	}
+	form{
+		height: 30px;width: 500px;border: 1px solid red;
+	}
+	.BtnStyle{
+		height: 30px;width: 100px;margin: 0 60px;
+	}
+	#Mode{
+		display: block;
+		height: 30px;width: 500px;text-align: center;line-height: 30px;margin: 10px 0;
+	}
+	#Content{
+		height: 500px;width: 500px;border: 1px solid red;position: relative;
+	}
+	#MainPic{
+		height: 500px;width: 500px;
+	}
+	.SecPic{
+		height: 40px;width: 40px;filter:alpha(opacity:80);opacity: 0.8;
+	}
+	.Desc{
+		height: 40px;width: 500px;text-align: center;line-height: 40px;background: #000;filter:alpha(opacity:80);opacity: 0.8;color:#fff;
+	}
+	#Num{
+		position: absolute;top: 0;
+	}
+	#Exp{
+		position: absolute;top: 460px;
+	}
+	#Pre{
+		position: absolute;top: 230px;left: 15px;
+	}
+	#Next{
+		position: absolute;top: 230px;right: 15px;
+	}
+	</style>
+	<script>
+	window.onload=function(){
+		alert(1);
+		var oCycle=document.getElementById("Cycle");
+		var oOrder=document.getElementById("Order");
+		var oMode=document.getElementById("Mode");
+		var oPre=document.getElementById("Pre");
+		var oNext=document.getElementById("Next");
+		var oNum=document.getElementById("Num");
+		var oExp=document.getElementById("Exp");
+		var oMainPic=document.getElementById("MainPic");
+
+
+		oCycle.onclick=function(){
+			oMode.innerHTML="现在是图片循环模式";
+			flag=0;
+		}
+		oOrder.onclick=function(){
+			oMode.innerHTML="现在是图片切换模式";
+			flag=1;
+		}
+
+		var arrPic=["img/PicSwitch_1.jpg","img/PicSwitch_2.jpg","img/PicSwitch_3.jpg","img/PicSwitch_4.jpg"];
+		var arrText=["你的眼神","运动健将","幻色","秋"];
+
+		var num=0;	
+		var flag=0;
+		show();
+
+		// if(){
+		// 	如果没有选择切换模式，一直保持第一张图片，如何检测有没有选择切换模式
+		// }
+
+		oNext.onclick=function(){
+		num++;
+		if(num==arrText.length){
+			if(flag==1){
+				alert("图片切换模式，已经是最后一张了");
+				num=arrText.length-1;
+			}else{
+			num=0;				
+		}
+		}
+			show();	
+		}
+
+		oPre.onclick=function(){
+		num--;
+		if(num==-1){
+			if(flag==1){
+				alert("图片切换模式，已经是第一张了");
+				num=0;
+			}else{
+				num=arrText.length-1;
+			}			
+		}
+			show();
+		}
+
+
+		function show(){
+			oMainPic.src=arrPic[num]; //只能对图片进行操作，如果对盒子进行操作，应该用背景图片么？
+			oNum.innerHTML=num+1+"/"+arrText.length;
+			oExp.innerHTML=arrText[num];
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="Box">
+		<form action="button">
+			<input id="Cycle" class="BtnStyle" type="button" value="循环切换">
+			<input id="Order" class="BtnStyle" type="button" value="顺序切换">
+		</form>
+		<p id="Mode">默认循环模式</p>
+		<div id="Content"><img id="MainPic"src="img/PicSwitch_loading.gif" alt="图片">
+			<p id="Pre"><img class="SecPic" src="img/PicSwitch_pre.png" alt="上一张" title="上一张"></p>
+			<p id="Next"><img class="SecPic" src="img/PicSwitch_next.png" alt="下一张" title="下一张"></p>
+			<div id="Num" class="Desc">第几张图片</div>
+			<div id="Exp" class="Desc">文字描述</div>
+		</div>	
+	</div>
+	
+</body>
+</html>
