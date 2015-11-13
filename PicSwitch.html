@@ -3,6 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>图片切换</title>
+<!-- 	问题：
+	1.如何检测是否选择模式？在不选择模式时，一直保持页面不动？
+	2.代码优化 -->
 	<style>
 	body,p,form{
 		margin: 0;padding: 0;
@@ -14,7 +17,7 @@
 		margin: 20px;
 	}
 	form{
-		height: 30px;width: 500px;border: 1px solid red;
+		height: 30px;width: 500px;
 	}
 	.BtnStyle{
 		height: 30px;width: 100px;margin: 0 60px;
@@ -24,7 +27,7 @@
 		height: 30px;width: 500px;text-align: center;line-height: 30px;margin: 10px 0;
 	}
 	#Content{
-		height: 500px;width: 500px;border: 1px solid red;position: relative;
+		height: 500px;width: 500px;position: relative;
 	}
 	#MainPic{
 		height: 500px;width: 500px;
@@ -50,7 +53,6 @@
 	</style>
 	<script>
 	window.onload=function(){
-		alert(1);
 		var oCycle=document.getElementById("Cycle");
 		var oOrder=document.getElementById("Order");
 		var oMode=document.getElementById("Mode");
