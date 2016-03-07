@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动生成5条新闻</title>
+	<script>
+	window.onload=function(){
+		var oBtn=document.getElementById("btn");
+		var aNews=document.getElementById("News");
+
+		var arr=[
+		'第一条新闻','第二条新闻','第三条新闻','第四条新闻','第五条新闻'
+		];
+
+		 // 1.找按钮的麻烦
+		 // 	oBtn.disabled=true;
+		 // 	oBtn.style.display='none';  记得none要加引号
+
+		 var onoff=true;
+		oBtn.onclick=function(){
+			// oBtn.disabled=true;    ok！
+			// oBtn.style.display='none'；
+			/*
+			if(onoff){   
+				for(var i=0;i<arr.length;i++){
+					aNews.innerHTML+='<li>'+arr[i] +'</li>';
+				}	
+				// onoff=false;
+			}
+			onoff=false;
+			*/
+			// oBtn.onclick=null;   
+			for(var i=0;i<arr.length;i++){
+				aNews.innerHTML+='<li>'+arr[i] +'</li>';
+			}
+	
+			// oBtn.disabled=true;      ok！
+		};
+		// oBtn.disabled=true;放在点击事件外面，则按钮直接失效
+	}
+	</script>
+</head>
+<body>
+	<input type="button" id="btn" value="自动生成5条新闻">
+	<ul id="News">
+	</ul>
+</body>
+</html>

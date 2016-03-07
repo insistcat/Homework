@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动变换Div高级版</title>
+	<style>
+	body{
+		margin: 0;padding: 0;
+	}
+	div{
+		width: 50px;height:50px;background: red;position: absolute;top: 0;left: 0;text-align: center;line-height: 50px;
+	}
+	#Wrap{
+		position: absolute;
+		top: 30px;
+	}
+	</style>
+</head>
+
+<body>
+	<input id="Button" type="button" value="pattern">
+	<section id="Wrap"></section>
+
+	<script>
+		window.onload=function(){
+			var aDiv=document.getElementsByTagName("div");			
+			var aWrap=document.getElementById("Wrap");			
+			var flag=1;
+
+			var oButton=document.getElementById("Button");
+			oButton.onclick=function showdiv(){
+				// alert("showdiv ok!");
+				show();
+				switch(flag){
+					case 1:showup();
+					break;
+					case 2:showright();
+					break;
+					case 3:showdown();
+					break;
+					case 4:showleft();
+					break;
+					default:
+					alert(flag);
+				}
+				// alert(flag);
+			}
+			function show(){
+				for(var i=0;i<11;i++){
+					aWrap.innerHTML+='<div>'+i+'</div>';
+				}
+			}
+			// show();
+			function showup(){
+				aWrap="";
+				for(var i=0;i<11;i++){
+				aDiv[i].style.left=30+50*i+"px";
+				if(i<5){
+					aDiv[i].style.top=30+50*i+"px";
+				}else{
+					aDiv[i].style.top=30+50*(aDiv.length-1-i)+"px";
+				}
+				}
+				flag=2;
+			}
+			function showright(){
+				aWrap="";
+				for(var i=0;i<11;i++){
+				aDiv[i].style.top=30+50*i+"px";
+				if(i<5){
+					aDiv[i].style.left=30+50*(aDiv.length-1-i)+"px";
+				}else{
+					aDiv[i].style.left=30+50*i+"px";
+				}	
+				}
+				flag=3;
+			}
+			function showdown(){
+				aWrap="";
+				for(var i=0;i<11;i++){
+				aDiv[i].style.left=30+50*i+"px";
+				if(i<5){
+					aDiv[i].style.top=30+50*(aDiv.length-1-i)+"px";
+				}else{
+					aDiv[i].style.top=30+50*i+"px";
+				}	
+				}
+				flag=4;
+			}
+			function showleft(){
+				aWrap="";
+				for(var i=0;i<11;i++){
+				aDiv[i].style.top=30+50*i+"px";
+				if(i<5){
+					aDiv[i].style.left=30+50*i+"px";
+				}else{
+					aDiv[i].style.left=30+50*(aDiv.length-1-i)+"px";
+				}	
+				}
+				flag=1;
+			}
+		}
+	</script>
+</body>
+</html>

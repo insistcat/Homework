@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>qq列表</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	ul,li{
+		list-style: none;
+	}
+	#nav{
+		width: 200px;
+		background: #cdf;
+		border: 1px solid #bcf;
+		margin: 0 auto;
+	}
+	.lis h2{
+		font-size: 18px;
+		height: 25px;
+		line-height: 25px;
+		text-indent: 30px;
+		background: url(img/3_3qq_ico1.gif) no-repeat 10px center #dfe;
+	} 
+	.lis .active{
+		background: url(img/3_3qq_ico2.gif) no-repeat 10px center #89c;
+	}
+	.lis ul{
+		display: none;
+	}
+	.lis li{
+		background: #cdf;
+		margin: 1px;
+		font-weight: normal;
+		text-indent: 30px;
+	}
+.lis ul .hover{
+	background: #ccc;
+}
+	</style>
+	<script>
+		window.onload=function(){
+			var oUl=document.getElementById("nav");
+			var aH2=oUl.getElementsByTagName("h2");
+			var aUl=oUl.getElementsByTagName("ul");
+			var aLi=null;
+			var arrLi=[];
+
+			var arrClass=['my friends','my honey','my lover','byebye'];
+
+			//点击H2，ul显示
+			for(var i=0;i<aH2.length;i++){
+				aH2[i].index=i;
+				aH2[i].onclick=function(){
+
+					for(var j=0;j<aH2.length;j++){
+					//判断h2不是当前的H2时，清空所有ul显示
+					//必须保留当前h2的样式，所以加判断
+						if(j!=this.index){
+							aUl[j].style.display="none";
+							aH2[j].className="";
+						}
+					}
+
+					if(this.className==""){
+						aUl[this.index].style.display="block";
+						this.className="active";	
+					}else{
+						aUl[this.index].style.display="none";
+						this.className="";	
+					}
+				}
+			}
+
+			//取h2下面的li值，存起来
+			for(var i=0;i<aUl.length;i++){
+				aLi=aUl[i].getElementsByTagName("li");
+				for(var j=0;j<aLi.length;j++){
+					arrLi.push(aLi[j]);
+				}
+			}
+
+			//对ul下的li进行操作
+			for(var i=0;i<arrLi.length;i++){
+				arrLi[i].onclick=function(){
+					//背景颜色不能判断
+					// this.style.background="#ccc";
+					for(var j=0;j<arrLi.length;j++){
+						// console.log(j);
+						arrLi[j].className="";
+					}
+					this.className="hover";
+				}
+			}
+
+
+		}
+	</script>
+</head>
+<body>
+	<ul id="nav">
+		<li class="lis">
+			<h2>我的好友</h2>
+			<ul>
+				<li>zhangsan</li>
+				<li>zhangsan</li>
+				<li>zhangsan</li>
+				<li>zhangsan</li>	
+			</ul>
+		</li>
+		<li class="lis">
+			<h2>高中</h2>
+			<ul>
+				<li>lily</li>
+				<li>lily</li>
+				<li>lily</li>
+				<li>lily</li>	
+			</ul>
+		</li>
+		<li class="lis">
+			<h2>大学</h2>
+			<ul>
+				<li>juice</li>
+				<li>juice</li>
+				<li>juice</li>
+				<li>juice</li>	
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

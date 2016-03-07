@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动变换Div高级版</title>
+	<style>
+	body{
+		margin: 0;padding: 0;
+	}
+	div{
+		width: 50px;height:50px;background: red;position: absolute;top: 0;left: 0;text-align: center;line-height: 50px;
+	}
+	#Wrap{
+		position: absolute;
+		top: 40px;
+		border: 1px solid black;
+		width: 800px;
+		height: 800px;
+	}
+	</style>
+</head>
+
+<body>
+	<input id="Button" type="button" value="pattern">
+	<section id="Wrap"></section>
+
+	<script>
+		window.onload=function(){
+			var aDiv=document.getElementsByTagName("div");			
+			var aWrap=document.getElementById("Wrap");			
+			var flag=1;
+
+			function show(){
+				for(var i=0;i<11;i++){
+					aWrap.innerHTML+='<div>'+i+'</div>';
+				}
+			}
+
+			var oButton=document.getElementById("Button");
+			oButton.onclick=function(){
+				if (flag==1) {
+					showup();
+					flag++;
+				}
+				else if (flag==2) {
+						flag++;
+						showright();
+					}else if(flag==3){
+						flag++;
+						showdown();		
+					}else if(flag==4){
+						showleft();
+						flag=1;
+					}
+			}
+			show();
+			function oreset(){
+				awrap="";
+			}
+
+			function showup(){
+				oreset();
+				for(var i=0;i<11;i++){
+				aDiv[i].style.left=30+50*i+"px";
+				if(i<5){
+					aDiv[i].style.top=30+50*i+"px";
+				}else{
+					aDiv[i].style.top=30+50*(aDiv.length-1-i)+"px";
+				}
+				}
+
+			}
+			function showright(){
+				oreset();
+				for(var i=0;i<11;i++){
+				aDiv[i].style.top=30+50*i+"px";
+				if(i<5){
+					aDiv[i].style.left=30+50*(aDiv.length-1-i)+"px";
+				}else{
+					aDiv[i].style.left=30+50*i+"px";
+				}	
+				}
+			}
+			function showdown(){
+				oreset();
+				for(var i=0;i<11;i++){
+				aDiv[i].style.left=30+50*i+"px";
+				if(i<5){
+					aDiv[i].style.top=30+50*(aDiv.length-1-i)+"px";
+				}else{
+					aDiv[i].style.top=30+50*i+"px";
+				}	
+				}
+			}
+			function showleft(){
+				oreset();
+				for(var i=0;i<11;i++){
+				aDiv[i].style.top=30+50*i+"px";
+				if(i<5){
+					aDiv[i].style.left=30+50*i+"px";
+				}else{
+					aDiv[i].style.left=30+50*(aDiv.length-1-i)+"px";
+				}	
+				}
+			}
+		}
+	</script>
+</body>
+</html>

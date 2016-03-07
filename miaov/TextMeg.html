@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>短信模拟发送</title>
+<!-- 	还有很多问题
+	1.span不能居中
+	2.输入的字数多的话，看不见前面输入了什么 
+	3.代码优化，布局很糟
+-->
+	<style>
+	p,span{
+		margin: 0;padding: 0;
+	}
+	img{
+		border: none;
+	}
+	#Content{
+		width: 300px;height: 450px;
+	}
+	#Meg{
+		width: 300px;height: 350px;border-radius: 5px;background: #f4f87c;margin-bottom: 2px;
+		overflow: scroll;
+	}
+	#Head{
+		width: 50px;height: 50px;position: relative;border-radius: 5px;background: #b5f8f8;
+	}
+	#Img{
+		width: 40px;height: 40px;border-radius: 5px;margin: 5px;
+	}
+	#TextMeg{
+		width: 248px;height: 50px;position: absolute;top: 0;left: 50px;background: #96f78b;border-radius: 5px;margin-left: 2px;
+	}
+	#TeMeg{
+		height: 24px;margin: 10px 0;margin-left: 5px;
+	}
+	#SubMeg{
+		height: 30px;width: 60px;margin-left: 3px; 
+	}
+	p{
+	/*	height:50px;
+		width: 250px;  因为要自适应，不能限制高*/
+		/*border: 1px solid red;*/
+	}
+	span{
+		font-size: 14px;
+		max-width: 208px;
+		display: inline-block;
+		border-radius: 5px;
+		vertical-align: top;
+		margin: 5px;
+		padding: 5px;
+		border: 1px solid blue;
+		word-wrap: break-word;		/*长单词换到下一行*/
+	}
+	.Cat{
+		width: 40px;height: 40px;border-radius: 5px;margin: 5px;
+	}
+	</style>
+	<script>
+	window.onload=function(){
+			// alert(1);
+	var oTeMeg=document.getElementById("TeMeg");
+	var oMeg=document.getElementById("Meg");
+	var oSubMeg=document.getElementById("SubMeg");
+	var oImg=document.getElementById("Img");
+
+	var flag=1;
+
+	oImg.onclick=function (){
+		if(flag){
+			oImg.src="img/textmeg_2.gif";
+			flag=0;
+		}
+		else{
+			oImg.src="img/textmeg_1.gif";
+			flag=1;
+		}	
+	}
+	oSubMeg.onclick=function (){
+		if(oTeMeg.value==""){
+			alert("啥都不写，我该弹出写什么~~~");	
+		}else{
+			if(flag)
+			{
+				oMeg.innerHTML='<p style="text-align:right"><span style="background:green">'
+				+ oTeMeg.value + '</span>'+'<img class="Cat" src="img/textmeg_2.gif">' +'</p>' 
+				+ oMeg.innerHTML;
+			}
+			else{
+				oMeg.innerHTML='<p style="text-align:left">'
+				+'<img class="Cat" src="img/textmeg_1.gif">'+'<span>'
+				 + oTeMeg.value + '</span>'+'</p>' + oMeg.innerHTML;
+			}
+		}
+		
+   }
+}
+	</script>
+</head>
+<body>
+	<div id="Content">
+		<div id="Meg">
+		</div>
+			<div id="Head">
+				<img id="Img" src="img/textmeg_1.gif" alt="逗比">
+				<form id="TextMeg" action="submit">
+					<input id="TeMeg" type="text" value="">
+					<input id="SubMeg" type="button" value="发送">
+				</form>
+			</div>
+	</div>
+</body>
+</html>

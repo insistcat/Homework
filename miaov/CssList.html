@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css二级菜单</title>
+	<style>
+	/*
+	1.先清除所有标签样式
+	2.设置第一级li的样式
+	3.把a填充满li，并设置好样式
+	4.设置a的hover
+	5.设置二级菜单的样式
+	6.隐藏二级菜单的ul
+	7.显示二级菜单的ul。鼠标移动到一级li的时候，二级ul显示
+	8.设置二级li的hover
+	*/
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+	}
+	#nav .MainMenu{
+		float: left;
+		width: 120px;
+		height: 30px;
+		background: purple;
+		margin-right: 1px;
+	}
+	#nav .MainMenu a{
+		display: block;
+		width: 100%;
+		height: 100%;
+		text-indent: 10px;
+		line-height: 30px;
+		color: #fff;
+	}
+	#nav .MainMenu a:hover{
+		background: orange;
+	}
+	#nav .SubMenu{
+		background: #abc;
+	}
+	#nav ul{
+		display: none;
+	}
+	#nav .MainMenu:hover ul{
+		display: block;
+	}
+	#nav .SubMenu a:hover{
+		background: #bbfccc;
+	}
+	</style>
+</head>
+<body>
+	<!-- ul#nav>li.MainMenu*4>a[href=#]+ul>li.SubMenu*2>a[href=#] -->
+	<!-- 上面是生成的简写 -->
+	<ul id="nav">
+		<li class="MainMenu">
+			<a href="#">一级菜单一</a>
+			<ul>
+				<li class="SubMenu"><a href="#">二级菜单一</a></li>
+				<li class="SubMenu"><a href="#">二级菜单二</a></li>
+			</ul>
+		</li>
+		<li class="MainMenu">
+			<a href="#">一级菜单二</a>
+			<ul>
+				<li class="SubMenu"><a href="#">二级菜单aa</a></li>
+				<li class="SubMenu"><a href="#">二级菜单bb</a></li>
+			</ul>
+		</li>
+		<li class="MainMenu">
+			<a href="#">一级菜单三</a>
+			<ul>
+				<li class="SubMenu"><a href="#">cc</a></li>
+				<li class="SubMenu"><a href="#">dd</a></li>
+			</ul>
+		</li>
+		<li class="MainMenu">
+			<a href="#">一级菜单四</a>
+			<ul>
+				<li class="SubMenu"><a href="#">ee</a></li>
+				<li class="SubMenu"><a href="#">ff</a></li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

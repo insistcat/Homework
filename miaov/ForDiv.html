@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Div变换_for循环</title>
+	<style>
+	body{
+		margin: 0;padding: 0;
+	}
+	div{
+		width: 50px;height: 50px;border: 1px solid green;text-align: center;line-height: 50px;background: red;position: absolute;top: 0;left: 0;
+	}
+	</style>
+	<script>
+	window.onload=function(){
+		var aDiv=document.getElementsByTagName("div");
+		var oButton=document.getElementById("Button");
+
+		// 每十个换一行
+		for(var i=0;i<100;i++){
+			document.body.innerHTML+='<div>'+i+'</div>';
+		}
+
+		for(var i=0;i<10;i++)
+			for(var j=0;j<10;j++){
+				aDiv[i*10+j].style.left=10+60*j+"px";
+				aDiv[i*10+j].style.top=10+60*i+"px";
+
+				// aDiv[i][j].style.left=10+60*j+"px";
+				// aDiv[i][j].style.top=10+60*i+"px";
+				if((i*10+j)%2==0){
+					aDiv[i*10+j].style.background="blue";
+				}
+			}
+		// 楼梯形式
+		// for(var i=0;i<10;i++){
+		// 	document.body.innerHTML+='<div>'+i+'</div>';
+		// }
+		// for(var i=0;i<10;i++){
+		// 	aDiv[i].style.left=10+50*i+"px";
+		// 	aDiv[i].style.top=10+50*i+"px";
+		// }
+
+		// V字形
+		// show();
+		// oButton.onclick=function(){
+		// 	// alert(1);
+		// 	show();		
+		// }
+		// function show(){
+		// 	for(var i=0;i<21;i++){
+		// 		document.body.innerHTML+='<div>'+i+'</div>';
+		// 		// alert(aDiv[i]);
+		// 	}
+		// 	for(var i=0;i<21;i++){
+		// 		aDiv[i].style.left=30+50*i+"px";
+		// 		if(i<10){
+		// 			aDiv[i].style.top=30+50*i+"px";
+		// 		}else{
+		// 			aDiv[i].style.top=30+(aDiv.length-i-1)*50+"px";
+		// 		}
+		// 	}		
+		// }
+	}
+	</script>
+</head>
+<body>
+	<input id="Button" type="button" value="自动生成V字形">
+</body>
+</html>

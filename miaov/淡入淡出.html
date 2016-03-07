@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淡入淡出</title>
+	<style>
+	div{
+		width: 200px;
+		height: 200px;
+		background: red;
+/*		filter:alpha(opacity:30);
+		opacity: 0.3;*/
+	}
+	</style>
+	<script>
+	window.onload=function(){
+		var oDiv=document.getElementById("div");
+
+		oDiv.onmousemove=function(){
+			startMove(30);
+		};
+		oDiv.onmouseout=function(){
+			startMove(100);
+		};
+
+	};
+
+	var timer=null;
+	var alpha=30;
+	function startMove(iTarget){
+		var oDiv=document.getElementById("div");
+
+		clearInterval(timer);
+		timer=setInterval(function(){
+			var speed=0;
+			if(alpha>iTarget)
+			{
+				speed=-4;
+			}
+			else{
+				speed=4;
+			}
+
+			if(alpha==iTarget)
+			{
+				clearInterval(timer);
+			}
+			else{
+				alpha+=speed;//是改变变量alpha的值然后改变透明度alpha
+				oDiv.style.filter='alpha(opacity'+alpha+')';
+				oDiv.style.opacity=alpha/100;
+				}
+		},30);
+	}
+	</script>
+</head>
+<body>
+	<div id="div"></div>
+</body>
+</html>

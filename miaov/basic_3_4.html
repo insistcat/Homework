@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片切换</title>
+	<style>
+		body,ul,p,li{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			border: none;
+		}
+		body{
+			background: #333;
+		}
+		li{
+			list-style: none;
+		}
+		#Pic{
+			width: 400px;
+			height: 400px;
+			border: 1px solid red;
+			background: url(img/loader_ico.gif) no-repeat center #fff;
+			/*margin:0 auto;*/
+			position: relative;
+		}
+		img{
+			width: 400px;
+			height: 400px;
+			/*display: block;*/
+		}
+		p,span{
+			height: 30px;
+			background: #000;
+			color: #fff;
+			line-height: 30px;
+			width: 400px;
+			text-align: center;
+			position: absolute;
+			left: 0;
+		}
+		#Pic ul{
+			position: absolute;
+			top: 10px;/*在webkit中绝对定位，只有left没有top时，ul位置在body之外*/
+			left: 410px;
+		}
+		li{
+			width: 40px;
+			height: 40px;
+			background: #edf;
+			margin: 3px;
+		}
+		span{
+			top: 0;
+		}
+		p{
+			bottom: 0;
+		}
+
+		.active{
+			background: #eac;
+		}
+	</style>
+	<script>
+	window.onload=function(){
+		var oDiv=document.getElementById("Pic");
+		var oImag=oDiv.getElementsByTagName("img")[0];
+		var oSpan=oDiv.getElementsByTagName("span")[0];
+		var oP=oDiv.getElementsByTagName("p")[0];
+		var oUl=oDiv.getElementsByTagName("ul")[0];
+		var aLi=oUl.getElementsByTagName("li");
+
+		var arrPic=['img/3_4_1.png','img/3_4_2.png','img/3_4_3.png','img/3_4_4.png'];
+		var arrTex=['老鹰','暗','人','机器人'];
+		var num=0;
+
+		for(var i=0;i<arrPic.length;i++){
+			oUl.innerHTML+='<li></li>';
+			}
+
+		function fnTo(){
+			oImag.src=arrPic[num];
+			oSpan.innerHTML=1+num+'/'+arrPic.length;
+			oP.innerHTML=arrTex[num];
+			aLi[num].className='active';
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className='';
+				}
+		}
+		fnTo();
+
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].index=i;
+			aLi[i].onclick=function(){
+				num=this.index;
+				fnTo();
+				this.className='active';
+			}
+		}
+
+		
+	}
+	</script>
+</head>
+<body>
+	<div id="Pic">
+		<img src="" alt="picture">
+		<span>图片正在加载中</span>
+		<p>文字说明加载中</p>
+		<ul>
+		</ul>
+	</div>
+</body>
+</html>

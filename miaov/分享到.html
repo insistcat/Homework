@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享到</title>
+	<style>
+	body,span{margin: 0;padding: 0;}
+	div{
+		width: 80px;
+		height: 160px;
+		background: #ccc;
+		position: absolute;
+		top: 10px;
+		left: -80px;
+	}
+	span{
+		width: 20px;
+		height: 80px;
+		background: red;
+		position: absolute;
+		top: 40px;
+		left: 80px;
+		text-align: center;
+	}
+	</style>
+	<script>
+	window.onload=function(){
+		var oSpan=document.getElementById("span");
+
+		oSpan.onmouseover=function(){
+			startMove(0);
+		};
+		oSpan.onmouseout=function(){
+			startMove(-80);
+		};
+	};
+	var timer=null;
+	function startMove(iTarget){
+		var oDiv=document.getElementById("div");
+		
+		clearInterval(timer);
+		timer=setInterval(function(){
+			var speed=0;
+			if(oDiv.offsetLeft>iTarget){
+				speed=-10;
+			}else{
+				speed=10;
+			}
+			if(oDiv.offsetLeft==iTarget){
+				clearInterval(timer);
+			}
+			else{
+				oDiv.style.left=oDiv.offsetLeft+speed+'px';
+			}
+		},30);
+	}
+	</script>
+</head>
+<body>
+	<div id="div">	
+	<span id="span">分享到</span>
+	</div>
+</body>
+</html>

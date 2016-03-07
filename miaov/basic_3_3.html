@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index匹配</title>
+	<style>
+	input{
+		width: 100px;
+		height: 100px;
+		margin: 20px;
+		font-size: 40px;
+	}
+	</style>
+	<script>
+	window.onload=function(){
+		var aBtn=document.getElementsByTagName("input");
+		var arr=['谢谢','同时','覆盖'];
+		var aP=document.getElementsByTagName("p");
+
+
+		for(var i=0;i<aBtn.length;i++)
+		{
+			aBtn[i].indexs=i;
+			aBtn[i].onclick=function(){
+				aBtn[this.indexs].value=arr[this.indexs];
+				aP[this.indexs].innerHTML=arr[this.indexs];
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<input type="button" value="btn1">	
+	<input type="button" value="btn2">	
+	<input type="button" value="btn3">	
+	<p>a</p>
+	<p>b</p>
+	<p>c</p>
+</body>
+</html>
