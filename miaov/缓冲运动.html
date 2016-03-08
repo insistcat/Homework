@@ -10,7 +10,7 @@
 			background: red;
 			position: absolute;
 			top: 50px;
-			/*left: 600px;*/
+			left: 500px;
 		}
 		#div2{
 			width: 1px;
@@ -18,7 +18,11 @@
 			background: black;
 			position: absolute;
 			top: 0;
-			left: 300px;
+			left: 500px;
+		}
+		p{display: inline-block;}
+		#Text{
+			width: 50px;
 		}
 	</style>
 	<script>
@@ -26,13 +30,18 @@
 		var oDiv1=document.getElementById("div1");
 		var oBtn=document.getElementById("Button");
 		var oText=document.getElementById("Text");
+
+		var str=oText.value;
+		oText.onfocus=function(){
+			oText.value="";
+		};
 		
 		oBtn.onclick=function(){
 			oText.innerHTML=oText.value+'px';
 			// alert(oText.innerHTML);
 			oDiv1.style.left=oText.innerHTML;
-			alert(oDiv1.offsetLeft);
-			startMove(300);
+			// alert(oDiv1.offsetLeft);
+			startMove(500);
 			// alert(1);
 
 		};
@@ -55,7 +64,7 @@
 				document.title=oDiv1.offsetLeft;
 			},30);
 			}
-		}
+		};
 
 	</script>
 </head>
@@ -63,6 +72,7 @@
 	<input id="Button" type="button" value="开始运动">
 	<div id="div1"></div>
 	<div id="div2"></div>
-	<input id="Text" type="text" value="请输入初始位置">
+	<p>开始运动的初始位置为：</p>
+	<input id="Text" type="text">
 </body>
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多个DIV淡入淡出</title>
+	<style>
+		div{
+			height: 200px;
+			width: 200px;
+			margin: 10px;
+			background: red;
+			float: left;
+			filter: alpha(opacity:30);
+			opacity: 0.3;
+		}
+	</style>
+	<script>
+	window.onload = function(){
+		var aDiv = document.getElementsByTagName("div");
+
+		for (var i = 0; i < aDiv.length; i++){
+			aDiv[i].timer=null;
+			aDiv[i].alpha=30;
+				// console.log("循环ok");
+			aDiv[i].onmouseover=function(){
+				startMove(this,100);
+				// console.log(1);
+			};
+			aDiv[i].onmouseout=function(){
+				startMove(this,30);
+				// console.log(2);
+			};
+		}
+	};
+		
+		function startMove(obj,iTarget){
+			// console.log(obj.alpha);
+			clearInterval(obj.timer);
+			obj.timer = setInterval(function(){
+				var speed = (iTarget - obj.alpha) / 6;
+				speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+				if (iTarget==obj.alpha) {
+					clearInterval(obj.timer);
+				}else{
+					obj.alpha += speed;
+					obj.style.alpha='alpha(opacity:'+obj.alpha+')';
+					obj.style.opacity=obj.alpha/100;
+					// console.log(obj.alpha);
+				}
+			},30);
+		};
+	</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>
