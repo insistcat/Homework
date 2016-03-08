@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>解决offset的bug</title>
+	<style>
+		div{
+			height: 60px;
+			width: 60px;
+			margin: 10px;
+			float: left;
+			background: red;
+			border: 10px solid black;
+
+		}
+		#div3{
+			filter: alpha(opacity:30);
+			opacity: 0.3;
+		}
+	</style>
+	<script>
+	window.onload=function(){
+		var oDiv1=document.getElementById('div1');
+		var oDiv2=document.getElementById('div2');
+		var oDiv3=document.getElementById('div3');
+		var oDiv4=document.getElementById('div4');
+
+		oDiv1.onmouseover=function(){
+			startMove(this,'height',400);
+		};
+		oDiv1.onmouseout=function(){
+			startMove(this,'height',100);
+		};
+		oDiv2.onmouseover=function(){
+			startMove(this,'width',400);
+		};
+		oDiv2.onmouseout=function(){
+			startMove(this,'width',100);
+		};
+		oDiv3.onmouseover=function(){
+			startMove(this,'opacity',100);
+		};
+		oDiv3.onmouseout=function(){
+			startMove(this,'opacity',30);
+		};
+		oDiv4.onmouseover=function(){
+			startMove(this,'font-size',20);
+		};
+		oDiv4.onmouseout=function(){
+			startMove(this,'font-size',5);
+		};
+	};
+		
+	function getStyle(obj,name){
+		if(obj.currentStyle){
+			return obj.currentStyle[name];
+		}else{
+			return getComputedStyle(obj,false)[name];
+		}
+	};
+
+	function startMove(obj,attr,iTarget){
+		clearInterval(obj.timer);
+		
+		obj.timer=setInterval(function(){
+
+			if(attr=="opacity"){
+				var cur=parseFloat(getStyle(obj,attr))*100;
+
+			}else{
+				var cur=parseInt(getStyle(obj,attr));
+			}
+			var speed=(iTarget-cur)/6;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			if(iTarget==cur){
+				clearInterval(obj.timer);
+			}else{
+				if(attr=="opacity"){
+					obj.style.filter='alpha(opacity('+cur+speed+'))';
+					obj.style.opacity=(cur+speed)/100;
+					document.getElementById("text1").value=obj.style.opacity;
+					// console.log(cur);
+				}else{
+					obj.style[attr]=cur+speed+'px';
+				}
+			}
+		},30);
+	};
+	</script>
+</head>
+<body>
+	<input id="text1" type="text" >
+	<p>opacity在ie7下回不到0.3，在0.3左右浮动，用math.round</p>
+	<div id="div1">heighter</div>
+	<div id="div2">taller</div>
+	<div id="div3">border</div>
+	<div id="div4">opacity</div>
+</body>
+</html>

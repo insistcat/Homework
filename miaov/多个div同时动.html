@@ -9,6 +9,7 @@
 		width: 100px;
 		background: red;
 		margin: 10px;
+		border: 10px solid black;
 	}
 	</style>
 	<script>
@@ -37,6 +38,7 @@
 					clearInterval(obj.timer);
 				}else{
 					obj.style.width = obj.offsetWidth + speed+"px";
+
 				}
 			},30);
 		};
@@ -44,6 +46,7 @@
 	</script>
 </head>
 <body>
+	<p>从100出发确回不到100因为用了offset</p>
 	<div></div>
 	<div></div>
 	<div></div>
